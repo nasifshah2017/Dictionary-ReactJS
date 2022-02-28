@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { ThemeProvider, CssBaseline, Grid } from "@material-ui/core";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import theme from "./theme";
+import Home from "./components/Home";
+import Definition from "./components/Definition";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+
+  return(
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Grid container>
+        <Grid item xs={12} sx={{ p: 2 }}>
+      <Router>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/search/:word">
+          <Definition />
+        </Route>
+      </Router>
+      </Grid>
+      </Grid>
+    </ThemeProvider>
+  )
 }
 
 export default App;
